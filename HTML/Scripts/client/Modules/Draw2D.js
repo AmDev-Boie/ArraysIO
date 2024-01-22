@@ -41,6 +41,50 @@ const drawGrid = (cameraPosition, cameraZoom) => {
     context.stroke();
 }
 
+// chatgpt ahh function (doing this in the morning and im too lazy to do shit before i go to school)
+
+function drawPolygon(canvasId, sides, size) {
+    // Get the canvas element
+    var canvas = document.getElementById(canvasId);
+    if (!canvas) {
+        console.error("Canvas element not found.");
+        return;
+    }
+
+    // Calculate the center of the canvas
+    var centerX = canvas.width / 2;
+    var centerY = canvas.height / 2;
+
+    // Start drawing the polygon
+    context.beginPath();
+
+    // Calculate the angle between each side of the polygon
+    var angle = (2 * Math.PI) / sides;
+
+    // Move the pen to the starting point
+    var startX = centerX + size * Math.cos(0);
+    var startY = centerY + size * Math.sin(0);
+    context.moveTo(startX, startY);
+
+    // Draw each side of the polygon
+    for (var i = 1; i <= sides; i++) {
+        var x = centerX + size * Math.cos(angle * i);
+        var y = centerY + size * Math.sin(angle * i);
+        context.lineTo(x, y);
+    }
+
+    // Close the path to connect the last side to the first
+    context.closePath();
+
+    // Set the stroke and fill styles (customize as needed)
+    context.strokeStyle = "black";
+    context.fillStyle = "lightblue";
+
+    // Stroke and fill the polygon
+    context.stroke();
+    context.fill();
+}
+
 const DrawScreen = (cameraPosition, cameraZoom) => {
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
